@@ -6,6 +6,8 @@ namespace Library2_WebAPI.Repos.Interfaces
     {
         IBookRepo books { get; }
         ICategoryRepo categories { get; }
+        IMemberRepo members { get; }
+        IBorrowingRepo borrowings { get; }
         void Save();
     }
 }

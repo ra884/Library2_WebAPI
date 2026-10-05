@@ -10,6 +10,7 @@ namespace Library2_WebAPI.Mapping
             CreateMap<Book,SearchBookDTO>().ReverseMap();   
             CreateMap<Book,GetBookBYPriceDTO>().ReverseMap();
             CreateMap<Book,CreateBookDTO>().ReverseMap();
+            CreateMap<Book,GetBookDTO>().ReverseMap();
         }
 
     }

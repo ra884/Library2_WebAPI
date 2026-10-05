@@ -107,7 +107,7 @@ namespace Library2_WebAPI.Data
                 new Borrowing
                 {
                     BorrowingId = 1,
-                    BorrowedDate = new DateOnly(2023, 1, 15),
+                    BorrowedDate = new DateTime(2023, 1, 15),
                     ReturnedDate = new DateTime(2023, 2, 15),
                     MemberId = 1,
                     BookId = 1
@@ -115,7 +115,7 @@ namespace Library2_WebAPI.Data
                 new Borrowing
                 {
                     BorrowingId = 2,
-                    BorrowedDate = new DateOnly(2023, 3, 10),
+                    BorrowedDate = new DateTime(2023, 3, 10),
                     ReturnedDate = null,
                     MemberId = 2,
                     BookId = 2

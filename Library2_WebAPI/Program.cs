@@ -20,6 +20,8 @@ builder.Services.AddScoped<IBookRepo, BookRepo>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<IMemberRepo, MemberRepo>();
+builder.Services.AddScoped<IBorrowingRepo, BorrowingRepo>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ namespace Library2_WebAPI.Models
         [Key]
         public int BorrowingId { get; set; }
         [Required]
-        public DateOnly BorrowedDate { get; set; }
+        public DateTime BorrowedDate { get; set; }
         public DateTime? ReturnedDate { get; set; }
         public Member Member { get; set; }
         public int MemberId { get; set; }

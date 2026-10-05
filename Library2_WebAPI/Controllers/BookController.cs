@@ -21,7 +21,7 @@ namespace Library2_WebAPI.Controllers
         [HttpGet("most-expensive")]   
         public IActionResult GetBook()
         {
-            var book=UnitOfWork.books.HighestPrice;
+            var book=UnitOfWork.books.HighestPrice();
             if (book == null)
             {
                 return NotFound("Book not found.");
