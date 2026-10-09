@@ -11,14 +11,17 @@ namespace Library2_WebAPI.Repos.Implementations
         public ICategoryRepo categories { get;}
         public IMemberRepo members { get;}
         public IBorrowingRepo borrowings { get;}
+        public IUserRepo users { get;}
         public UnitOfWork(AppDbContext context, IBookRepo bookRepo
-            , ICategoryRepo categoryRepo, IMemberRepo members, IBorrowingRepo borrowings)
+            , ICategoryRepo categoryRepo, IMemberRepo members
+            , IBorrowingRepo borrowings,IUserRepo users)
         {
             this.context = context;
             books = bookRepo;
             categories = categoryRepo;
             this.members = members;
             this.borrowings = borrowings;
+            this.users = users;
         }
 
         public void Save()

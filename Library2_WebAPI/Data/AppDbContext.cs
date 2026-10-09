@@ -12,6 +12,7 @@ namespace Library2_WebAPI.Data
         public DbSet<Models.Category> Categories { get; set; }
         public DbSet<Models.Member> Members { get; set; }
         public DbSet<Models.Borrowing> Borrowings { get; set; }
+        public DbSet<User> Users {  get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

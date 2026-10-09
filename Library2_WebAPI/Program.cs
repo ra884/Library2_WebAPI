@@ -1,7 +1,12 @@
+using System.Drawing.Imaging;
+using System.Text;
 using Library2_WebAPI.Data;
 using Library2_WebAPI.Repos.Implementations;
 using Library2_WebAPI.Repos.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +27,28 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IMemberRepo, MemberRepo>();
 builder.Services.AddScoped<IBorrowingRepo, BorrowingRepo>();
+builder.Services.AddScoped<IUserRepo,UserRepo>();
+
+
+// Configure JWT Bearer Authentication
+var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options => {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateLifetime = true,
+            ValidIssuer = builder.Configuration["JWT:Issuer"],
+            ValidAudience = builder.Configuration["JWT:Audience"]
+        };
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +59,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

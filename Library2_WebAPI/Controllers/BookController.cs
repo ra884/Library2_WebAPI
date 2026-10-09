@@ -2,6 +2,7 @@
 using Library2_WebAPI.DTOs.BookDTO;
 using Library2_WebAPI.Models;
 using Library2_WebAPI.Repos.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace Library2_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BookController : ControllerBase
     {
         private IUnitOfWork UnitOfWork;
@@ -34,10 +36,6 @@ namespace Library2_WebAPI.Controllers
         public IActionResult search(string Keyword)
         {
             var books= UnitOfWork.books.Search(Keyword);
-            if (books == null)
-            {
-                return NotFound("No bpppks found.");
-            }
             var booksDTO=mapper.Map<ICollection<SearchBookDTO>>(books);
             return Ok(booksDTO);
         }

@@ -2,6 +2,7 @@
 using Library2_WebAPI.DTOs.BorrowingDTO;
 using Library2_WebAPI.Models;
 using Library2_WebAPI.Repos.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace Library2_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BorrowingController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;

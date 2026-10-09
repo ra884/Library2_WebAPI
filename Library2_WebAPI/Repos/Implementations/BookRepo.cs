@@ -20,7 +20,9 @@ namespace Library2_WebAPI.Repos.Implementations
 
         public ICollection<Book> Search(string Keyword)
         {
-           var books=context.Books.Where(b => b.Title.Contains(Keyword) || b.Author.Contains(Keyword)).ToList();
+           var books=context.Books.Where(b => b.Title
+           .Contains(Keyword) || b.Author.Contains(Keyword))
+                .OrderByDescending(b=>b.Title).ToList();
             return books;
         }
     }
